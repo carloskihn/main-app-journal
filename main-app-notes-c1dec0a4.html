@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱游戏 · 自在故事的开端</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            color: #1f1f1f;
+            background: #f8f7f5;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .hero {
+            background: linear-gradient(145deg, #0f1a2e 0%, #1b2c44 70%, #233a57 100%);
+            padding: 4.5rem 1.5rem 3.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: -60%;
+            left: -20%;
+            width: 140%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 40%, rgba(220, 220, 255, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-inner {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-short {
+            font-size: 1.2rem;
+            letter-spacing: 0.02em;
+            color: #b6cced;
+            margin-bottom: 0.75rem;
+            font-weight: 350;
+            opacity: 0.85;
+        }
+
+        .hero-title {
+            font-size: 2.4rem;
+            font-weight: 500;
+            color: #ffffff;
+            margin-bottom: 0.3rem;
+            letter-spacing: -0.01em;
+        }
+
+        .hero-sub {
+            font-size: 1rem;
+            color: #cbdaea;
+            max-width: 480px;
+            margin: 0.8rem auto 1.6rem;
+            line-height: 1.6;
+        }
+
+        .hero-link {
+            display: inline-block;
+            background: #ed7a3f;
+            color: #fff;
+            font-weight: 500;
+            font-size: 1.05rem;
+            padding: 0.7rem 2rem;
+            border-radius: 40px;
+            text-decoration: none;
+            box-shadow: 0 4px 14px rgba(237, 122, 63, 0.25);
+            transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+        }
+
+        .hero-link:hover {
+            background: #d9662d;
+            box-shadow: 0 6px 18px rgba(237, 122, 63, 0.35);
+            transform: translateY(-2px);
+        }
+
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem 3.5rem;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 470;
+            color: #1f2b3c;
+            margin-bottom: 1rem;
+            border-left: 4px solid #ed7a3f;
+            padding-left: 1.2rem;
+        }
+
+        .intro-text {
+            font-size: 1.05rem;
+            color: #2c3a4b;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .intro-text a {
+            color: #c25a24;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-thickness: 1.5px;
+            font-weight: 450;
+            transition: color 0.15s;
+        }
+
+        .intro-text a:hover {
+            color: #a0471d;
+        }
+
+        .feature-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.8rem;
+            margin: 2.2rem 0 2rem;
+        }
+
+        .card {
+            flex: 1 1 220px;
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.6rem 1.4rem 1.8rem;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+            transition: box-shadow 0.2s, transform 0.15s;
+        }
+
+        .card:hover {
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.07);
+            transform: translateY(-3px);
+        }
+
+        .card-icon {
+            font-size: 1.8rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .card h3 {
+            font-size: 1.15rem;
+            font-weight: 530;
+            margin-bottom: 0.4rem;
+            color: #1c293b;
+        }
+
+        .card p {
+            font-size: 0.94rem;
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        .faq-summary {
+            background: #edeae5;
+            border-radius: 24px;
+            padding: 1.8rem 2rem;
+            margin: 2.8rem 0 2rem;
+        }
+
+        .faq-summary h3 {
+            font-size: 1.1rem;
+            font-weight: 520;
+            color: #1f2b3c;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .faq-item {
+            margin-bottom: 0.7rem;
+        }
+
+        .faq-item strong {
+            font-weight: 530;
+            color: #1f2b3c;
+        }
+
+        .faq-item p {
+            margin: 0.1rem 0 0.5rem 1.2rem;
+            color: #3a485c;
+            font-size: 0.95rem;
+        }
+
+        .gentle-ending {
+            margin-top: 2.8rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid #ddd8d0;
+            font-size: 1rem;
+            color: #3f4e62;
+            text-align: center;
+        }
+
+        .gentle-ending a {
+            color: #c25a24;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            font-weight: 450;
+        }
+
+        .gentle-ending a:hover {
+            color: #9a411b;
+        }
+
+        @media (max-width: 600px) {
+            .hero {
+                padding: 3rem 1.2rem 2.5rem;
+            }
+
+            .hero-title {
+                font-size: 1.9rem;
+            }
+
+            .hero-sub {
+                font-size: 0.95rem;
+            }
+
+            .container {
+                padding: 1.8rem 1rem 2.8rem;
+            }
+
+            .section-title {
+                font-size: 1.3rem;
+                padding-left: 0.8rem;
+            }
+
+            .feature-cards {
+                gap: 1.2rem;
+            }
+
+            .card {
+                flex: 1 1 100%;
+                padding: 1.3rem 1.2rem;
+            }
+
+            .faq-summary {
+                padding: 1.5rem 1.2rem;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .hero-title {
+                font-size: 1.6rem;
+            }
+
+            .hero-short {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <div class="hero-inner">
+            <p class="hero-short">有些入口，安静而踏实</p>
+            <h1 class="hero-title">和爱游戏一起，慢慢发现</h1>
+            <p class="hero-sub">一个让人放松下来的地方，<br>没有拥挤的推送，只有刚刚好的内容。</p>
+            <a href="https://main-app-aiyouxi.com.cn" class="hero-link">爱游戏</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <section>
+            <h2 class="section-title">从一次稳定的驻足开始</h2>
+            <div class="intro-text">
+                <p>有时候，我们只是想找一个简单、靠谱的页面，不必左顾右盼。或许你曾路过很多站点，但能让人记住的，往往是那些不匆忙、不嘈杂的角落。<a href="https://main-app-aiyouxi.com.cn">爱游戏</a>就是这样一个地方——它把有趣的、琐碎的、平静的东西放在一起，等待你用自己的节奏去翻阅。没有复杂的门槛，没有闪烁的诱导，只有一扇始终敞开、不紧不慢的门。</p>
+                <p style="margin-top: 0.8rem;">你可以把它当作一个老友，偶尔过来坐坐，或者只是收藏起来，在需要的时候自然地走进去。这里的一切都围绕着真实、温和的体验展开。</p>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">它让人感到舒服的几个侧面</h2>
+            <div class="feature-cards">
+                <div class="card">
+                    <div class="card-icon">🌿</div>
+                    <h3>干净的结构</h3>
+                    <p>页面清晰，分类友好，不堆砌无关信息。你来不是为了被轰炸，而是为了找到想要的。</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🧭</div>
+                    <h3>稳定的指向</h3>
+                    <p>每个链接都通向该去的地方，没有多余的跳转。始终如一的入口，让人安心。</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">☕</div>
+                    <h3>不赶时间的节奏</h3>
+                    <p>内容更新不频繁也不冷清，恰好在合适的频率里，陪你度过几个安静的片刻。</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq-summary">
+            <h3>❓ 一些你可能想问的</h3>
+            <div class="faq-item">
+                <strong>这个网站是做什么的？</strong>
+                <p>它是一个内容向的站点，围绕兴趣与日常，提供轻量但有趣的信息聚合。你可以把它看作一个安静的阅读角落。</p>
+            </div>
+            <div class="faq-item">
+                <strong>需要注册或登录吗？</strong>
+                <p>不需要。直接进入就好，没有任何会员或账户门槛。纯粹浏览，就像翻开一本杂志。</p>
+            </div>
+            <div class="faq-item">
+                <strong>怎么找到那个入口？</strong>
+                <p>页面上方或段落中都有指向 <a href="https://main-app-aiyouxi.com.cn" style="color: #c25a24; text-decoration: underline; text-underline-offset: 2px;">爱游戏</a> 的链接，点击就能直达。很简单，就像推开一扇虚掩的门。</p>
+            </div>
+        </section>
+
+        <div class="gentle-ending">
+            <p>无论在清晨还是傍晚，如果路过，不妨进去看一眼。<br>
+            希望每一次打开 <a href="https://main-app-aiyouxi.com.cn">爱游戏</a>，都让你觉得刚刚好。</p>
+        </div>
+    </main>
+</body>
+</html>
