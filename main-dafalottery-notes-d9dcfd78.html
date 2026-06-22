@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大发彩票 · 信息索引与知识档案</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background-color: #f5f7fa;
+            color: #1e232b;
+            line-height: 1.6;
+        }
+
+        /* 深色头图区 ── 目录感背景，拒花哨，重质地 */
+        .hero {
+            background: linear-gradient(145deg, #0b111a 0%, #1a2330 100%);
+            color: #eaeef3;
+            padding: 4rem 2rem 3.5rem;
+            text-align: center;
+            border-bottom: 1px solid #2e3a48;
+        }
+
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            margin-bottom: 0.75rem;
+            color: #ffffff;
+        }
+
+        .hero h1 span {
+            color: #b5cf3a;
+            font-weight: 400;
+        }
+
+        .hero .subhead {
+            max-width: 640px;
+            margin: 0 auto;
+            font-size: 1.05rem;
+            color: #b0bec5;
+            border-top: 1px solid #2c3a4a;
+            padding-top: 1.2rem;
+            line-height: 1.7;
+        }
+
+        .hero .subhead a {
+            color: #b5cf3a;
+            text-decoration: none;
+            border-bottom: 1px dotted #5f7a3a;
+        }
+
+        .hero .subhead a:hover {
+            color: #d4ed6c;
+            border-bottom-style: solid;
+        }
+
+        /* 正文区 ── 浅色底，卡片目录风格 */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 3.5rem;
+        }
+
+        /* 目录网格：说明区、提示区、相关信息区 自然呈现 */
+        .directory-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.8rem;
+            margin-bottom: 2.2rem;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.8rem 1.6rem 2rem;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.03);
+            transition: box-shadow 0.2s;
+            border: 1px solid #eef2f6;
+        }
+
+        .card:hover {
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+        }
+
+        .card h2 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.85rem;
+            color: #1f2a3a;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card h2 i {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background: #b5cf3a;
+            border-radius: 10px;
+            margin-right: 6px;
+        }
+
+        .card p, .card li {
+            font-size: 0.95rem;
+            color: #2f3a48;
+            margin-bottom: 0.7rem;
+        }
+
+        .card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .card li::before {
+            content: "—";
+            color: #9aafc0;
+            margin-right: 0.5rem;
+        }
+
+        .card .highlight-link {
+            font-weight: 500;
+            color: #1f6b3c;
+            text-decoration: none;
+            border-bottom: 1px solid #c7dbb0;
+        }
+
+        .card .highlight-link:hover {
+            color: #0f4a28;
+            border-bottom-color: #3a7d4e;
+        }
+
+        /* 提示区卡片 ── 独特样式，偏生活提醒 */
+        .card-tip {
+            background: #f9fbf6;
+            border-left: 5px solid #b5cf3a;
+        }
+
+        .card-tip h2 i {
+            background: #7f9f2e;
+        }
+
+        .card-tip .tip-meta {
+            display: block;
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
+            color: #6e7b8a;
+            border-top: 1px dashed #dde3e9;
+            padding-top: 1rem;
+        }
+
+        /* 相关信息区 ── 紧凑 FAQ 摘要 */
+        .faq-mini {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.8rem 1.6rem 2rem;
+            border: 1px solid #e4eaf0;
+            margin-bottom: 1.8rem;
+        }
+
+        .faq-mini h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1e2a36;
+            margin-bottom: 0.4rem;
+        }
+
+        .faq-mini .q {
+            margin: 1.2rem 0 0.3rem;
+            font-weight: 500;
+            color: #253544;
+            font-size: 0.98rem;
+        }
+
+        .faq-mini .a {
+            color: #465a6b;
+            padding-left: 0.2rem;
+            font-size: 0.93rem;
+            border-bottom: 1px solid #edf2f7;
+            padding-bottom: 0.7rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .faq-mini .a:last-of-type {
+            border-bottom: none;
+        }
+
+        .faq-mini .a a {
+            color: #1f6b3c;
+            text-decoration: underline dotted #b0cfa0;
+        }
+
+        .faq-mini .a a:hover {
+            color: #104d2c;
+        }
+
+        /* 资料脚注 ── 收敛感 */
+        .meta-footer {
+            text-align: center;
+            padding: 2.5rem 0 1rem;
+            font-size: 0.9rem;
+            color: #64748b;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 0.5rem;
+        }
+
+        .meta-footer a {
+            color: #2c5b3e;
+            text-decoration: none;
+            border-bottom: 1px solid #bdd1b0;
+        }
+
+        .meta-footer a:hover {
+            border-bottom-style: solid;
+            color: #0f3d24;
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 680px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .hero {
+                padding: 2.8rem 1.2rem 2.5rem;
+            }
+            .container {
+                padding: 1.5rem 1rem 2.5rem;
+            }
+            .directory-grid {
+                gap: 1.2rem;
+            }
+            .card {
+                padding: 1.4rem 1.2rem 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- 深色头图：知识库入口，目录感标题 -->
+<header class="hero">
+    <h1>📋 资料索引 · <span>大发彩票</span></h1>
+    <div class="subhead">
+        从信息整理与存档的角度，汇集平台结构、功能边界与常见疑问。  
+        如果你正在了解 <a href="https://main-dafalottery.com">大发彩票</a>，这份档案可以作为一个脉络参考。
+    </div>
+</header>
+
+<main class="container">
+
+    <!-- 三区网格：说明区、提示区、相关信息区 -->
+    <div class="directory-grid">
+
+        <!-- 说明区：背景与定位 -->
+        <section class="card">
+            <h2><i></i> 说明 · 平台概况</h2>
+            <p><strong>大发彩票</strong> 是一类线上数字娱乐与信息服务平台，主要提供彩票相关资讯、开奖数据及玩法介绍。用户在了解规则后，可自行判断是否参与。</p>
+            <p>该平台涵盖多种彩种类型，包括数字型、乐透型及高频玩法，数据更新通常与官方保持同步。站内亦提供走势图表、历史统计等辅助工具，方便用户做个人分析。</p>
+            <p>值得留意的是，任何彩票活动均需遵守所在地法律法规，平台仅作为信息展示与交易撮合渠道。</p>
+        </section>
+
+        <!-- 提示区：偏生活化提醒，强调信息素养 -->
+        <section class="card card-tip">
+            <h2><i></i> 🧭 提示 · 信息素养</h2>
+            <ul>
+                <li>查阅任何彩票信息前，先确认自己所在地的监管政策。</li>
+                <li>开奖结果以官方权威发布为准，平台展示数据仅供参考核对。</li>
+                <li>建议设定个人浏览时间与预算，避免过度沉浸。</li>
+                <li>如果发现数据异常或链接失效，可通过平台客服反馈修正。</li>
+            </ul>
+            <span class="tip-meta">⏳ 本页提示基于常见用户经验整理，并非官方声明。</span>
+        </section>
+
+        <!-- 相关信息区：快速链接索引 + 资源类型 -->
+        <section class="card">
+            <h2><i></i> 相关信息 · 资源分类</h2>
+            <ul>
+                <li>开奖历史与走势图表（日/周/月）</li>
+                <li>玩法规则说明与奖金结构</li>
+                <li>热门彩种：双色球、大乐透、福彩3D、排列三</li>
+                <li>公告通知与系统维护时间表</li>
+                <li>帐号安全及常见操作指引</li>
+            </ul>
+            <p style="margin-top: 0.8rem;">更多内容可直接浏览 <a class="highlight-link" href="https://main-dafalottery.com">大发彩票</a> 对应的信息目录。</p>
+        </section>
+    </div>
+
+    <!-- FAQ 摘要区：自然融入常见疑问，不啰嗦 -->
+    <div class="faq-mini">
+        <h3>📌 知识档案 · 常见问题摘要</h3>
+        <div class="q">Q：平台数据多久更新一次？</div>
+        <div class="a">大部分核心彩种在开奖后 5–15 分钟内更新，部分高频玩法接近实时。建议以页面标注的「最后同步时间」为准。</div>
+
+        <div class="q">Q：通过平台购买彩票是否安全？</div>
+        <div class="a">正规平台采用加密传输与第三方资金托管。但仍需自行核实平台资质，并保管好个人账户信息。如有疑问，可先查阅 <a href="https://main-dafalottery.com">大发彩票</a> 的帮助中心或公示信息。</div>
+
+        <div class="q">Q：为什么有些彩种无法查看详细走势？</div>
+        <div class="a">少数彩种由于数据源限制或版权原因，只提供基础开奖号码，详细分析工具可能需登录后使用。这属于正常信息分层。</div>
+    </div>
+
+    <!-- 一个小小的引用区块：增加目录感及生活气息 -->
+    <div style="background: #f0f4fa; border-radius: 18px; padding: 1.5rem 1.8rem; margin: 1.2rem 0 0.5rem; border: 1px solid #e1e9f2;">
+        <p style="font-weight: 450; color: #1f2e3f;">📂 存档备忘：</p>
+        <p style="color: #2f4055; font-size: 0.93rem;">本索引页面向对资料梳理有需求的用户。如果你在寻找「大发彩票」的基础信息、常见分类或使用边界，上述卡片和摘要可以作为起点。切记，所有线上行为都建立在个人判断之上，平台仅为工具。</p>
+    </div>
+
+</main>
+
+<!-- 页脚区 ── 自然嵌入链接且不出现“进入、查看”等指令词 -->
+<footer class="meta-footer">
+    <p>信息索引 · 内容持续修订 &nbsp;|&nbsp; 关于 <a href="https://main-dafalottery.com">大发彩票</a> 的资料整理</p>
+    <p style="margin-top: 0.3rem; font-size: 0.85rem; color: #7a8a9b;">本页仅作知识展示，不构成任何投资或参与建议。</p>
+</footer>
+
+</body>
+</html>
